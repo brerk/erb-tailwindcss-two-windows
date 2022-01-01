@@ -5,7 +5,7 @@ import './App.css';
 const Hello = () => {
   return (
     <div className='bg-yellow-400 text-6xl hover:bg-yellow-400'>
-        hola mundo desde la ventana 1
+        Hello World from window 1.
     </div>
   );
 };

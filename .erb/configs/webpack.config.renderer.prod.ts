@@ -133,6 +133,7 @@ const configuration: webpack.Configuration = {
     new HtmlWebpackPlugin({
       filename: 'window1/index.html',
       template: path.join(webpackPaths.srcRendererPath, 'window1/index.ejs'),
+      chunks: ['window1'],
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
@@ -145,6 +146,7 @@ const configuration: webpack.Configuration = {
     new HtmlWebpackPlugin({
       filename: 'window2/index.html',
       template: path.join(webpackPaths.srcRendererPath, 'window2/index.ejs'),
+      chunks: ['window2'],
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
