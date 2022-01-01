@@ -131,8 +131,20 @@ const configuration: webpack.Configuration = {
     }),
 
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.join(webpackPaths.srcRendererPath, 'index.ejs'),
+      filename: 'window1/index.html',
+      template: path.join(webpackPaths.srcRendererPath, 'window1/index.ejs'),
+      minify: {
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        removeComments: true,
+      },
+      isBrowser: false,
+      isDevelopment: process.env.NODE_ENV !== 'production',
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: 'window2/index.html',
+      template: path.join(webpackPaths.srcRendererPath, 'window2/index.ejs'),
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
