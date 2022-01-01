@@ -26,6 +26,7 @@ export default class AppUpdater {
 }
 
 let window1: BrowserWindow | null = null;
+let window2: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
@@ -81,11 +82,22 @@ const createWindow = async () => {
     },
   });
 
+  window2 = new BrowserWindow({
+    show: false,
+    width: 1024,
+    height: 728,
+    icon: getAssetPath('icon.png'),
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  });
+
   window1.loadURL(resolveHtmlPath('window1/index.html'));
+  window2.loadURL(resolveHtmlPath('window2/index.html'));
 
   window1.on('ready-to-show', () => {
     if (!window1) {
-      throw new Error('"mainWindow" is not defined');
+      throw new Error('"window2" is not defined');
     }
     if (process.env.START_MINIMIZED) {
       window1.minimize();
@@ -94,15 +106,38 @@ const createWindow = async () => {
     }
   });
 
+  window2.on('ready-to-show', () => {
+    if (!window2) {
+      throw new Error('"window2" is not defined');
+    }
+    if (process.env.START_MINIMIZED) {
+      window2.minimize();
+    } else {
+      window2.show();
+    }
+  });
+
   window1.on('closed', () => {
     window1 = null;
   });
 
-  const menuBuilder = new MenuBuilder(window1);
-  menuBuilder.buildMenu();
+  window2.on('closed', () => {
+    window1 = null;
+  });
+
+  const menuBuilder1 = new MenuBuilder(window1);
+  const menuBuilder2 = new MenuBuilder(window2);
+  menuBuilder1.buildMenu();
+  menuBuilder2.buildMenu();
 
   // Open urls in the user's browser
   window1.webContents.on('new-window', (event, url) => {
+    event.preventDefault();
+    shell.openExternal(url);
+  });
+
+  // Open urls in the user's browser
+  window2.webContents.on('new-window', (event, url) => {
     event.preventDefault();
     shell.openExternal(url);
   });

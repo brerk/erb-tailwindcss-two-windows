@@ -37,6 +37,11 @@ const configuration: webpack.Configuration = {
         'core-js',
         'regenerator-runtime/runtime',
         path.join(webpackPaths.srcRendererPath, 'window1/index.tsx'),
+    ],
+      window2: [
+        'core-js',
+        'regenerator-runtime/runtime',
+        path.join(webpackPaths.srcRendererPath, 'window2/index.tsx'),
     ]
   },
 
