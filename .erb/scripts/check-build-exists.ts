@@ -7,6 +7,7 @@ import webpackPaths from '../configs/webpack.paths';
 const mainPath = path.join(webpackPaths.distMainPath, 'main.js');
 // const rendererPath = path.join(webpackPaths.distRendererPath, 'renderer.js');
 const window1RendererPath = getRendererPath('window1')
+const window2RendererPath = getRendererPath('window2')
 
 if (!fs.existsSync(mainPath)) {
   throw new Error(
@@ -23,6 +24,15 @@ if (!fs.existsSync(window1RendererPath)) {
     )
   );
 }
+
+if (!fs.existsSync(window2RendererPath)) {
+  throw new Error(
+    chalk.whiteBright.bgRed.bold(
+      'The renderer process for window2 is not built yet. Build it by running "npm run build:renderer"'
+    )
+  );
+}
+
 
 function getRendererPath(name: string) {
   /* return path.join(

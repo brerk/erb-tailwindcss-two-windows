@@ -33,10 +33,10 @@ const configuration: webpack.Configuration = {
   target: ['web', 'electron-renderer'],
 
   entry: {
-      window1: [
+      window2: [
         'core-js',
         'regenerator-runtime/runtime',
-        path.join(webpackPaths.srcRendererPath, 'window1/index.tsx'),
+        path.join(webpackPaths.srcRendererPath, 'window2/index.tsx'),
     ]
   },
 

@@ -45,13 +45,14 @@ const configuration: webpack.Configuration = {
   target: ['web', 'electron-renderer'],
 
   entry: {
-      window1: [
+      window2: [
             `webpack-dev-server/client?http://localhost:${port}/dist`,
             'webpack/hot/only-dev-server',
             'core-js',
             'regenerator-runtime/runtime',
-            path.join(webpackPaths.srcRendererPath, 'window1/index.tsx'),
-        ],
+            path.join(webpackPaths.srcRendererPath, 'window2/index.tsx'),
+        ]
+
   },
 
   output: {
