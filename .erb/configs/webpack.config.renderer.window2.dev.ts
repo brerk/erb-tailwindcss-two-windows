@@ -145,7 +145,7 @@ const configuration: webpack.Configuration = {
 // por que se cambio el path a window1/, ya no es hijo directo de src
     new HtmlWebpackPlugin({
       filename: path.join('window1/index.html'),
-      template: path.join(webpackPaths.srcRendererPath, 'window1/index.ejs'),
+      template: path.join(webpackPaths.srcRendererPath, 'window2/index.ejs'),
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
